@@ -16,6 +16,7 @@ public class Spaceship {
     private boolean right = false, left = false;
     private Boolean up = false, down = false;
     private boolean space = false;
+    private int counter = 1;
 
     public Spaceship(int x, int y, int xa, int ya) {
         try {
@@ -120,8 +121,15 @@ public class Spaceship {
         }
         
         if (getSpace() == true) {
-            g.setColor(new Color(255, 255, 0, 150));
-            g.fillRect(x+35, y, 50, 250);
+            g.setColor(new Color(255, 0, 0, 225)); 
+        	if (counter == -1) {
+                counter = counter*-1;
+                g.fillRoundRect(x+88, y+10, 10, 50, 5, 10);
+        	}
+        	else if (counter == 1) {
+                counter = counter*-1;
+        		g.fillRoundRect(x+88+60, y+10, 10, 50, 5, 10);    
+        	}
         }
     }
 }
