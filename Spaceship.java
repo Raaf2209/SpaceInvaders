@@ -1,5 +1,4 @@
 import java.awt.*;
-import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.*;
@@ -23,11 +22,11 @@ public class Spaceship {
 
     public Spaceship(int x, int y, int xa, int ya) {
         try {
-            spaceship = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\SpaceshipDefault.png"));
-            spaceshipExhaust = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\SpaceshipExhaust.png"));
-            spaceshipBack = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\SpaceshipBack.png"));
-            spaceshipLeft = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\SpaceshipLeft.png"));
-            spaceshipRight = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\SpaceshipRight.png"));
+            spaceship = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\SpaceshipDefault.png"));
+            spaceshipExhaust = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\SpaceshipExhaust.png"));
+            spaceshipBack = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\SpaceshipBack.png"));
+            spaceshipLeft = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\SpaceshipLeft.png"));
+            spaceshipRight = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\SpaceshipRight.png"));
         } catch (IOException e) {
             System.out.println("No Image");
         }
@@ -106,18 +105,17 @@ public class Spaceship {
     }
 
     public void move() {
-
     }
 
     public void moveSingle() {
         if (right) {
-            xa = 2;
+            xa = 3;
         }
         if (left) {
-            xa = -2;
+            xa = -3;
         }
         if (down) {
-            ya = 2;
+            ya = 3;
         }
         if (up) {
             ya = -3;
@@ -129,30 +127,30 @@ public class Spaceship {
     public void paint(Graphics2D g) {
         //If spaceship is moving forward add exhaust trail
         if (getUp() == true) {
-            g.drawImage(spaceshipExhaust, x, y, null);
+            g.drawImage(spaceshipExhaust, getX(), getY(), null);
         }
         else if (getDown() == true) {
-            g.drawImage(spaceshipBack, x, y, null);       	
+            g.drawImage(spaceshipBack, getX(), getY(), null);       	
         }
         else if (getLeft() == true) {
-            g.drawImage(spaceshipLeft, x, y, null);       	
+            g.drawImage(spaceshipLeft, getX(), getY(), null);       	
         }
         else if (getRight() == true) {
-            g.drawImage(spaceshipRight, x, y, null);       	
+            g.drawImage(spaceshipRight, getX(), getY(), null);       	
         }
         else {
-            g.drawImage(spaceship, x, y, null);
+            g.drawImage(spaceship, getX(), getY(), null);
         }
         
         if (getSpace() == true) {
             g.setColor(new Color(255, 0, 0, 225)); 
         	if (counter == -1) {
                 counter = counter*-1;
-                g.fillRoundRect(x+65, y+40, 10, 40, 5, 10);
+                g.fillRoundRect(getX()+65, getY()+40, 10, 40, 5, 10);
         	}
         	else if (counter == 1) {
                 counter = counter*-1;
-        		g.fillRoundRect(x+75+50, y+40, 10, 40, 5, 10);    
+        		g.fillRoundRect(getX()+75+50, getY()+40, 10, 40, 5, 10);    
         	}
         }
     }
