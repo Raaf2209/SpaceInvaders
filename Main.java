@@ -8,11 +8,20 @@ import java.io.*;
 
 public class Main extends JPanel {
 	private BufferedImage img = null;
-	private Spaceship s = new Spaceship(550, 450, 0, 0); // Add an instance of the ball object
-
+	private Spaceship s = new Spaceship(550, 450, 0, 0); 
+	private Asteroid a = new Asteroid(this, 0, 0, 1, 1); 
+	
+	Asteroid[] list = new Asteroid[3];
+	
 	public Main() {
+		for (int i = 0; i< list.length; i++) {
+			list[i] = new Asteroid(this, i*50, i*50,
+			(int)(10 * Math.random() - 5),
+			(int)(10 * Math.random() - 5));
+		}
+		
 		try {
-			img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\Background.png"));
+			img = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Images\\Background.png"));
 		} catch (IOException e) {
 			System.out.println("No Image");
 		}
@@ -33,6 +42,15 @@ public class Main extends JPanel {
 
 	
 	private void move() {
+		//Check for collisions between each of the asteroids
+		for (int i = 0; i < list.length; i++) {
+			for (int j = i+1; j<list.length; j++) {
+				list[i].collision(list[j]);
+			}
+		}
+		for (Asteroid a:list)
+			a.move();
+		
 		s.moveSingle();
 	}	
 	
@@ -45,6 +63,9 @@ public class Main extends JPanel {
 		
 		g.drawImage(img, 0, 0, null);
 		s.paint(g2d);
+		
+		for (Asteroid a:list)
+			a.paint(g2d);
 		
 	}
 
