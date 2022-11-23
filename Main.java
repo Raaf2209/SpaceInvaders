@@ -8,11 +8,11 @@ import java.io.*;
 
 public class Main extends JPanel {
 	private BufferedImage img = null;
-	private Spaceship s = new Spaceship(600, 450, 0, 0); // Add an instance of the ball object
+	private Spaceship s = new Spaceship(550, 450, 0, 0); // Add an instance of the ball object
 
 	public Main() {
 		try {
-			img = ImageIO.read(new File("U:\\Documents\\Inventor\\SpaceInvaders\\src\\Test.png"));
+			img = ImageIO.read(new File("C:\\Users\\Michael\\Desktop\\Desktop Folder\\JavaStuff\\Space Invaders\\src\\Background.png"));
 		} catch (IOException e) {
 			System.out.println("No Image");
 		}
