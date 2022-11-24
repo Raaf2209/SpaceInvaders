@@ -105,9 +105,6 @@ public class Spaceship {
     }
 
     public void move() {
-    }
-
-    public void moveSingle() {
         if (right) {
             xa = 3;
         }
@@ -121,7 +118,13 @@ public class Spaceship {
             ya = -3;
         }
         x += xa;
-        y+=ya;
+        y += ya;
+        
+		//Check if spaceship hits border
+		if (x > 1230) x = -150;
+		else if (x < -150) x = 1230;
+		else if (y > 670) y = -150;
+		else if (y < -150) y = 670;
     }
 
     public void paint(Graphics2D g) {
